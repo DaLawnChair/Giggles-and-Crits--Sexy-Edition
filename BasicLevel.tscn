@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl4wddyg0fh8u"]
+
+[ext_resource type="PackedScene" uid="uid://bf6rilc0dxbaj" path="res://Player.tscn" id="1_lpq42"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6u7gh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10f7y"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3oh2j"]
+
+[sub_resource type="Sky" id="Sky_dejpq"]
+sky_material = SubResource("PhysicalSkyMaterial_3oh2j")
+
+[sub_resource type="Environment" id="Environment_8pl72"]
+background_mode = 2
+sky = SubResource("Sky_dejpq")
+
+[node name="BasicLevel" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 0.3, 0, 0, 0, 20, 0.0416713, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_6u7gh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_10f7y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8pl72")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.308524, -0.522598, 0.794798, -0.441441, 0.66147, 0.60629, -0.842581, -0.537912, -0.0266174, 20.2964, 8.09916, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_lpq42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20412, 10, -0.109339)
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(-8.74228e-07, 0.3, -8.74228e-07, 0, -1.31134e-08, -20, -20, -1.31134e-08, 3.82137e-14, 11.2968, 1.02179, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00738316, 0, 0)
+mesh = SubResource("BoxMesh_6u7gh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_10f7y")
