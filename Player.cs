@@ -16,19 +16,15 @@ public partial class Player : CharacterBody3D
 	public Camera3D camera;
 	public CharacterBody3D self;
 
+	public int health=100;
+
 	float y_velocity=0;
 	public override void _Ready()
-
 	{
-
 		cameraBase = GetNode<Node3D>("CameraBase");	
 		camera = GetNode<Camera3D>("Camera");
 
 		Input.MouseMode = Input.MouseModeEnum.Captured; // Keeps the mouse inside of the window
-		GD.Print(cameraBase); //Camera is not accessed, it is null
-		GD.Print(cameraBase.GetType()); // Error due to calling 
-		
-
 	} 
 	public override void _Input(InputEvent @event)
 	{
@@ -80,7 +76,6 @@ public partial class Player : CharacterBody3D
 		//Handling gravity
 		if(grounded==false)
 		{
-			GD.Print("HERe");
 			y_velocity += Gravity;
 		}	
 		else
@@ -100,8 +95,5 @@ public partial class Player : CharacterBody3D
 		velocity = velocity.Rotated(Vector3.Up, camera.Rotation.Y);
 		Velocity = velocity;
 		MoveAndSlide();  
-		GD.Print(y_velocity);
-		GD.Print(velocity);
-		GD.Print(IsOnFloor());
 	}
 }

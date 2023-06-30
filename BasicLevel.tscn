@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl4wddyg0fh8u"]
+[gd_scene load_steps=7 format=3 uid="uid://dl4wddyg0fh8u"]
 
 [ext_resource type="PackedScene" uid="uid://bf6rilc0dxbaj" path="res://Player.tscn" id="1_lpq42"]
 [ext_resource type="Material" uid="uid://coi8xr6coffh2" path="res://OrangeTexture.tres" id="2_u6qdx"]
+[ext_resource type="PackedScene" uid="uid://1q6xisshgy2j" path="res://HealthPack.tscn" id="3_ecaxd"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3oh2j"]
 
@@ -47,3 +48,6 @@ material = ExtResource("2_u6qdx")
 transform = Transform3D(1.25768, 0, 0, 0, -4.37113e-08, -0.872219, 0, 1.69309, -6.45506e-08, 0.452207, 6.92853, 17.7376)
 size = Vector3(20, 1, 20)
 material = ExtResource("2_u6qdx")
+
+[node name="HealthPack" parent="." instance=ExtResource("3_ecaxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.16767, 6)
