@@ -15,14 +15,17 @@ public partial class Player : CharacterBody3D
 	public Node3D cameraBase;
 	public Camera3D camera;
 	public CharacterBody3D self;
+	public AnimationPlayer animations;
 
 	public int health=100;
 
 	float y_velocity=0;
+	Boolean grounded;
 	public override void _Ready()
 	{
 		cameraBase = GetNode<Node3D>("CameraBase");	
 		camera = GetNode<Camera3D>("Camera");
+		animations = GetNode<AnimationPlayer>("AnimationPlayer");
 
 		Input.MouseMode = Input.MouseModeEnum.Captured; // Keeps the mouse inside of the window
 	} 
@@ -57,7 +60,7 @@ public partial class Player : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Vector3.Zero;
-		Boolean grounded = IsOnFloor();
+		grounded = IsOnFloor();
 		
 		Vector3 forward_velocity =  Transform.Basis.Z * (-Input.GetActionStrength("move_forward")+Input.GetActionStrength("move_backward")); 
 		Vector3 right_velocity = Transform.Basis.X * (Input.GetActionStrength("move_right")-Input.GetActionStrength("move_left")); 
@@ -95,5 +98,27 @@ public partial class Player : CharacterBody3D
 		velocity = velocity.Rotated(Vector3.Up, camera.Rotation.Y);
 		Velocity = velocity;
 		MoveAndSlide();  
+		gunAnimationPlayer();
+	}
+
+	public void gunAnimationPlayer()
+	{
+		if(animations.CurrentAnimation == "ShotgunFire")
+		{
+		}
+		else if(Input.IsActionJustPressed("fire"))
+		{
+			animations.Stop();
+			animations.Play("ShotgunFire");
+		}
+		else if ((Velocity != Vector3.Zero) && grounded) 
+		{
+			animations.Play("ShotgunMove");
+		}
+		else
+		{
+			animations.Play("ShotgunIdle");
+		}
+		GD.Print(animations.CurrentAnimation);
 	}
 }

@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://1q6xisshgy2j"]
 
-[ext_resource type="Script" path="res://HealthPack.cs" id="1_8mooh"]
+[ext_resource type="Script" path="res://GameInteractables/HealthPack.cs" id="1_cqnxe"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbt6s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jhyv7"]
 
 [node name="HealthPack" type="StaticBody3D"]
-script = ExtResource("1_8mooh")
+script = ExtResource("1_cqnxe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_nbt6s")
