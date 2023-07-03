@@ -22,9 +22,6 @@ environment = SubResource("Environment_8pl72")
 transform = Transform3D(0.308524, -0.522598, 0.794798, -0.441441, 0.66147, 0.60629, -0.842581, -0.537912, -0.0266174, 20.2964, 8.09916, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_lpq42")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20412, 10, -0.109339)
-
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1.00047, 0, 0, 0, 1.00047, 0, 0, 0, 1.00047, 0, 0, 0)
 use_collision = true
@@ -51,3 +48,6 @@ material = ExtResource("2_u6qdx")
 
 [node name="HealthPack" parent="." instance=ExtResource("3_ecaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.16767, 6)
+
+[node name="Player" parent="." instance=ExtResource("1_lpq42")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

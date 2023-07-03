@@ -15,7 +15,7 @@ public partial class Player : CharacterBody3D
 	public Node3D cameraBase;
 	public Camera3D camera;
 	public CharacterBody3D self;
-	public AnimationPlayer animations;
+	Weapon currentWeapon;
 
 	public int health=100;
 
@@ -25,9 +25,9 @@ public partial class Player : CharacterBody3D
 	{
 		cameraBase = GetNode<Node3D>("CameraBase");	
 		camera = GetNode<Camera3D>("Camera");
-		animations = GetNode<AnimationPlayer>("AnimationPlayer");
-
+		currentWeapon = GetNode<Weapon>("%Shotgun");
 		Input.MouseMode = Input.MouseModeEnum.Captured; // Keeps the mouse inside of the window
+
 	} 
 	public override void _Input(InputEvent @event)
 	{
@@ -98,27 +98,12 @@ public partial class Player : CharacterBody3D
 		velocity = velocity.Rotated(Vector3.Up, camera.Rotation.Y);
 		Velocity = velocity;
 		MoveAndSlide();  
-		gunAnimationPlayer();
+		updateGunPlayerAnimationVars();
 	}
 
-	public void gunAnimationPlayer()
+	public void updateGunPlayerAnimationVars()
 	{
-		if(animations.CurrentAnimation == "ShotgunFire")
-		{
-		}
-		else if(Input.IsActionJustPressed("fire"))
-		{
-			animations.Stop();
-			animations.Play("ShotgunFire");
-		}
-		else if ((Velocity != Vector3.Zero) && grounded) 
-		{
-			animations.Play("ShotgunMove");
-		}
-		else
-		{
-			animations.Play("ShotgunIdle");
-		}
-		GD.Print(animations.CurrentAnimation);
+		currentWeapon.playerVelocity = Velocity;
+		currentWeapon.playerGrounded = grounded;
 	}
 }

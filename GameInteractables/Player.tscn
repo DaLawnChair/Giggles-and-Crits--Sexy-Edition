@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bf6rilc0dxbaj"]
+[gd_scene load_steps=12 format=3 uid="uid://bf6rilc0dxbaj"]
 
 [ext_resource type="Script" path="res://GameInteractables/Player.cs" id="1_0vb6p"]
+[ext_resource type="Texture2D" uid="uid://bc6u65wk0thpe" path="res://Assets/Crosshair.png" id="2_jtyyp"]
 [ext_resource type="PackedScene" uid="uid://duawcrgqwdtqf" path="res://Models/Shotgun.blend" id="2_snlws"]
+[ext_resource type="Script" path="res://Weapons/Shotgun.cs" id="4_j4d7p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1ky0"]
 
@@ -12,7 +14,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Shotgun:position")
+tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +31,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Shotgun:position")
+tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +43,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/Shotgun:rotation")
+tracks/1/path = NodePath("Camera/WeaponHolder/Shotgun:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -56,7 +58,7 @@ resource_name = "ShotgunIdle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Shotgun:position")
+tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/Shotgun:rotation")
+tracks/1/path = NodePath("Camera/WeaponHolder/Shotgun:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +87,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Shotgun:position")
+tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -169,19 +171,60 @@ offset_bottom = -650.0
 text = "10
 "
 
-[node name="Shotgun" parent="Camera" instance=ExtResource("2_snlws")]
-transform = Transform3D(-7.23998e-08, 0, -0.02, 0, 0.02, 0, 0.02, 0, -7.23998e-08, 0.1, -0.125, -0.2)
+[node name="Sprite2D" type="Sprite2D" parent="Camera/CanvasLayer/Control"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(576, 320)
+texture = ExtResource("2_jtyyp")
 
-[node name="Light" parent="Camera/Shotgun" index="0"]
+[node name="WeaponHolder" type="Node3D" parent="Camera"]
+
+[node name="Shotgun" parent="Camera/WeaponHolder" instance=ExtResource("2_snlws")]
+unique_name_in_owner = true
+transform = Transform3D(-5.93065e-08, 4.15268e-08, -0.02, 0.0114715, 0.016383, 0, 0.016383, -0.0114715, -7.23998e-08, 0.1, -0.125, -0.2)
+script = ExtResource("4_j4d7p")
+
+[node name="Light" parent="Camera/WeaponHolder/Shotgun" index="0"]
 visible = false
 
-[node name="Camera" parent="Camera/Shotgun" index="1"]
+[node name="Camera" parent="Camera/WeaponHolder/Shotgun" index="1"]
 visible = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="RayCasts" type="Node3D" parent="Camera/WeaponHolder/Shotgun"]
+transform = Transform3D(-0.000180999, 0, 50, 0, 50, 0, -50, 0, -0.000180999, 35, -18.75, 4.99987)
+
+[node name="Ray1" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray2" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray3" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray4" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray5" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray6" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray7" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray8" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Ray9" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
+target_position = Vector3(0, 0, -50)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponHolder/Shotgun"]
+root_node = NodePath("../../../..")
 playback_default_blend_time = 0.05
 libraries = {
 "": SubResource("AnimationLibrary_i53ws")
 }
 
-[editable path="Camera/Shotgun"]
+[editable path="Camera/WeaponHolder/Shotgun"]
