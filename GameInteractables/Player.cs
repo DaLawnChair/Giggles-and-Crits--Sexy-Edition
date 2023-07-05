@@ -14,8 +14,7 @@ public partial class Player : CharacterBody3D
 	public const float MaxFallSpeed = -20f;
 	public Node3D cameraBase;
 	public Camera3D camera;
-	public CharacterBody3D self;
-	Weapon currentWeapon;
+	public Weapon currentWeapon;
 
 	public int health=100;
 

@@ -17,15 +17,13 @@ public partial class Pickupable : StaticBody3D
         mesh = GetNode<MeshInstance3D>("MeshInstance3D");
         spawnTimer = GetNode<Timer>("Timer");
         spawnTimer.WaitTime = respawnTime;
-        GD.Print("AAA");
     }
 
-    public void _on_area_3d_body_entered(Player player)
+    public virtual void _on_player_body_entered(Player player)
     {
         GD.Print(player.Name);
         collision.SetDeferred("monitoring",false);
         mesh.Visible = false;
-        player.health += 100;
         spawnTimer.Start();
     }
 

@@ -16,6 +16,11 @@ public partial class HealthPack : Pickupable
 		value = resourceTypes[type];
 		GD.Print(value);
     }
-	
 
+		public override void _on_player_body_entered(Player player)
+    {
+		base._on_player_body_entered(player);
+		player.health += 100;
+		GD.Print(player.health);
+    }
 }

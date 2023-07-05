@@ -6,8 +6,8 @@ public partial class Weapon : Node3D
     String name;
     String type;
 
-    int[] curAmmo;
-    int[] maxAmmo;
+    public int[] curAmmo;
+    public int[] maxAmmo;
     int fireLoss;
     int reloadGain;
     float reloadTime;

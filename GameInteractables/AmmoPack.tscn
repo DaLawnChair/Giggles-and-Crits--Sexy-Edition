@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://1q6xisshgy2j"]
+[gd_scene load_steps=4 format=3 uid="uid://2qfngb5dde55"]
 
-[ext_resource type="Script" path="res://GameInteractables/HealthPack.cs" id="1_cqnxe"]
+[ext_resource type="Script" path="res://GameInteractables/AmmoPack.cs" id="1_n63pl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbt6s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jhyv7"]
 
-[node name="HealthPack" type="StaticBody3D"]
-script = ExtResource("1_cqnxe")
+[node name="AmmoPack" type="StaticBody3D"]
+script = ExtResource("1_n63pl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_nbt6s")
@@ -22,4 +22,4 @@ shape = SubResource("BoxShape3D_jhyv7")
 one_shot = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_player_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout" flags=18]

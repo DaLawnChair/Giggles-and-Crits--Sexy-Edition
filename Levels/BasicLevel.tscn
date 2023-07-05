@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl4wddyg0fh8u"]
+[gd_scene load_steps=8 format=3 uid="uid://dl4wddyg0fh8u"]
 
 [ext_resource type="PackedScene" uid="uid://bf6rilc0dxbaj" path="res://GameInteractables/Player.tscn" id="1_lpq42"]
 [ext_resource type="Material" uid="uid://coi8xr6coffh2" path="res://Levels/OrangeTexture.tres" id="2_u6qdx"]
 [ext_resource type="PackedScene" uid="uid://1q6xisshgy2j" path="res://GameInteractables/HealthPack.tscn" id="3_ecaxd"]
+[ext_resource type="PackedScene" uid="uid://2qfngb5dde55" path="res://GameInteractables/AmmoPack.tscn" id="4_cbo3d"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3oh2j"]
 
@@ -47,7 +48,13 @@ size = Vector3(20, 1, 20)
 material = ExtResource("2_u6qdx")
 
 [node name="HealthPack" parent="." instance=ExtResource("3_ecaxd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.16767, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 6)
 
 [node name="Player" parent="." instance=ExtResource("1_lpq42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="AmmoPack" parent="." instance=ExtResource("4_cbo3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 7)
+
+[node name="AmmoPack2" parent="." instance=ExtResource("4_cbo3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
