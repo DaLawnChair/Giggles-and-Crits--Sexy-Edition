@@ -47,10 +47,6 @@ public partial class Player : CharacterBody3D
 			{
 				GetTree().Quit();
 			}
-			if (eventKey.IsActionPressed("reload"))
-			{
-				camera.Rotation = Vector3.Zero;
-			}
 		}
 
 	}

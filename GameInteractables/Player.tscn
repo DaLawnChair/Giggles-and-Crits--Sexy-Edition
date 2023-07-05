@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf6rilc0dxbaj"]
+[gd_scene load_steps=13 format=3 uid="uid://bf6rilc0dxbaj"]
 
 [ext_resource type="Script" path="res://GameInteractables/Player.cs" id="1_0vb6p"]
 [ext_resource type="Texture2D" uid="uid://bc6u65wk0thpe" path="res://Assets/Crosshair.png" id="2_jtyyp"]
@@ -23,10 +23,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0.1, -0.125, -0.2)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponHolder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_rny7c"]
 resource_name = "ShotgunFire"
-length = 0.5
+length = 0.75
 step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -35,10 +47,10 @@ tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.1, -0.1, -0.2), Vector3(0.1, -0.1, -0.1), Vector3(0.1, -0.1, -0.2)]
+"values": [Vector3(0.1, -0.1, -0.2), Vector3(0.1, -0.1, -0.1), Vector3(0.1, -0.1, -0.2), Vector3(0.1, -0.1, -0.2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,10 +59,10 @@ tracks/1/path = NodePath("Camera/WeaponHolder/Shotgun:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, -0.436332), Vector3(0, -1.5708, 0)]
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, -0.436332), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wj6lh"]
@@ -97,12 +109,42 @@ tracks/0/keys = {
 "values": [Vector3(0.1, -0.1, -0.2), Vector3(0.13, -0.075, -0.2), Vector3(0.1, -0.1, -0.2), Vector3(0.07, -0.075, -0.2), Vector3(0.1, -0.1, -0.2)]
 }
 
+[sub_resource type="Animation" id="Animation_cxsgc"]
+resource_name = "ShotgunReload"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.610865, -1.5708, 0.610865)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponHolder/Shotgun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.45, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.1, -0.125, -0.2), Vector3(0.1, -0.15, -0.2), Vector3(0.1, -0.125, -0.2)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i53ws"]
 _data = {
 "RESET": SubResource("Animation_qhpi7"),
 "ShotgunFire": SubResource("Animation_rny7c"),
 "ShotgunIdle": SubResource("Animation_wj6lh"),
-"ShotgunMove": SubResource("Animation_mwqyb")
+"ShotgunMove": SubResource("Animation_mwqyb"),
+"ShotgunReload": SubResource("Animation_cxsgc")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -120,9 +162,9 @@ mesh = SubResource("CapsuleMesh_anye1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
 fov = 90.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
+[node name="HUD" type="CanvasLayer" parent="Camera"]
 
-[node name="Control" type="Control" parent="Camera/CanvasLayer"]
+[node name="Control" type="Control" parent="Camera/HUD"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,7 +175,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Health" type="Label" parent="Camera/CanvasLayer/Control"]
+[node name="Health" type="Label" parent="Camera/HUD/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -147,7 +189,7 @@ grow_vertical = 2
 text = "100 HP
 "
 
-[node name="CurAmmo" type="Label" parent="Camera/CanvasLayer/Control"]
+[node name="CurAmmo" type="Label" parent="Camera/HUD/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -159,7 +201,7 @@ offset_bottom = -650.0
 text = "10
 "
 
-[node name="ResAmmo" type="Label" parent="Camera/CanvasLayer/Control"]
+[node name="ResAmmo" type="Label" parent="Camera/HUD/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -171,7 +213,7 @@ offset_bottom = -650.0
 text = "10
 "
 
-[node name="Sprite2D" type="Sprite2D" parent="Camera/CanvasLayer/Control"]
+[node name="Crosshair" type="Sprite2D" parent="Camera/HUD/Control"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(576, 320)
 texture = ExtResource("2_jtyyp")
@@ -180,7 +222,7 @@ texture = ExtResource("2_jtyyp")
 
 [node name="Shotgun" parent="Camera/WeaponHolder" instance=ExtResource("2_snlws")]
 unique_name_in_owner = true
-transform = Transform3D(-5.93065e-08, 4.15268e-08, -0.02, 0.0114715, 0.016383, 0, 0.016383, -0.0114715, -7.23998e-08, 0.1, -0.125, -0.2)
+transform = Transform3D(-7.23995e-08, 0, -0.0199999, 0, 0.02, 0, 0.0199999, 0, -7.23996e-08, 0.1, -0.125, -0.2)
 script = ExtResource("4_j4d7p")
 
 [node name="Light" parent="Camera/WeaponHolder/Shotgun" index="0"]
@@ -222,7 +264,7 @@ target_position = Vector3(0, 0, -50)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponHolder/Shotgun"]
 root_node = NodePath("../../../..")
-playback_default_blend_time = 0.05
+playback_default_blend_time = 0.25
 libraries = {
 "": SubResource("AnimationLibrary_i53ws")
 }

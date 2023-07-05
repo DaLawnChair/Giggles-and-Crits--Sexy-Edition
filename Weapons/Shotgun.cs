@@ -10,7 +10,7 @@ public partial class Shotgun : Weapon
 	public override void _Ready()
 	{
 		raycasts = GetNode<Node3D>("RayCasts");
-		base._Ready("Shotgun", "hitscan", new int[]{6,36}, new int[]{6,36}, 1, 0.5f, 0.5f, 0.5f);
+		base._Ready("Shotgun", "hitscan", new int[] {0,36}, new int[] {6,36}, 1, 1, 0.5f, 0.5f, 0.5f);
 		int counter=0;
 		foreach (RayCast3D rayCast in raycasts.GetChildren())
 		{			
