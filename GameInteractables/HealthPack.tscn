@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1q6xisshgy2j"]
 
-[ext_resource type="Script" path="res://GameInteractables/HealthPack.cs" id="1_cqnxe"]
+[ext_resource type="Script" path="res://GameInteractables/Scripts/HealthPack.cs" id="1_cqnxe"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nbt6s"]
 
