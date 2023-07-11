@@ -21,7 +21,6 @@ public partial class Pickupable : StaticBody3D
 
     public virtual void _on_player_body_entered(Player player)
     {
-        GD.Print(player.Name);
         collision.SetDeferred("monitoring",false);
         mesh.Visible = false;
         spawnTimer.Start();
