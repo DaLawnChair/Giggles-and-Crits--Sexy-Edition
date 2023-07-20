@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl4wddyg0fh8u"]
+[gd_scene load_steps=11 format=3 uid="uid://dl4wddyg0fh8u"]
 
 [ext_resource type="PackedScene" uid="uid://bf6rilc0dxbaj" path="res://GameInteractables/Player.tscn" id="1_lpq42"]
 [ext_resource type="Material" uid="uid://coi8xr6coffh2" path="res://Levels/OrangeTexture.tres" id="2_u6qdx"]
 [ext_resource type="PackedScene" uid="uid://1q6xisshgy2j" path="res://GameInteractables/HealthPack.tscn" id="3_ecaxd"]
 [ext_resource type="PackedScene" uid="uid://2qfngb5dde55" path="res://GameInteractables/AmmoPack.tscn" id="4_cbo3d"]
+[ext_resource type="PackedScene" uid="uid://cbbqhgc6y0uq7" path="res://GameInteractables/Enemy.tscn" id="5_17nq3"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3oh2j"]
 
@@ -77,3 +78,6 @@ shape = SubResource("BoxShape3D_u6nav")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_4blpq")
+
+[node name="Enemy" parent="." instance=ExtResource("5_17nq3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.72409, -7.7541)

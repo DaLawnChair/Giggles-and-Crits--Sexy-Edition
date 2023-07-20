@@ -8,6 +8,8 @@ public partial class Weapon : Node3D
 
     public int[] curAmmo;
     public int[] maxAmmo;
+
+    protected int damage;
     int fireLoss;
     int reloadGain;
     float reloadTime;
@@ -19,12 +21,13 @@ public partial class Weapon : Node3D
     public Vector3 playerVelocity;
     public Boolean playerGrounded;
 
-    public void _Ready(String _name, String _type, int[] _curAmmo, int[] _maxAmmo, int _fireLoss, int _reloadGain, float _reloadTime, float _fireRate, float _switchTime)
+    public void _Ready(String _name, String _type, int[] _curAmmo, int[] _maxAmmo, int _damage, int _fireLoss, int _reloadGain, float _reloadTime, float _fireRate, float _switchTime)
     {
         name = _name;
         type = _type;
         curAmmo = _curAmmo;
         maxAmmo = _maxAmmo;
+        damage = _damage;
         fireLoss = _fireLoss;
         reloadGain = _reloadGain;
         reloadTime = _reloadTime;
@@ -32,14 +35,8 @@ public partial class Weapon : Node3D
         switchTime = _switchTime;
         animations =  GetNode<AnimationPlayer>("AnimationPlayer");    
         animations.AnimationFinished += (name) => onAnimationPlayerAnimationFinished(name);
-
+        animations.AnimationStarted += (name) => onAnimationPlayerAnimationStarted(name);
     }
-    //alt-fire
-
-
-    // void fire();
-    // void reload();
-    // void 
 
     public override void _Process(double delta)
 	{
@@ -69,18 +66,25 @@ public partial class Weapon : Node3D
                 }
             }
 		}
-		//GD.Print(animations.CurrentAnimation);
-        //GD.Print($"[{curAmmo[0]},{curAmmo[1]}]");
 	}
 
-    public void fireGun()
+    public void resetBlendTime(Boolean truth)
+    {
+        
+            
+    }
+    public virtual void fireGun()
     {
         if(curAmmo[0]<=0)
         {
             return;
         }
+
+        //Jank that teleports the shotgun to the "RESET" animation, skipping blendtime and thus only finishing when in position
         animations.Stop();
-		animations.Play(name+"Fire");
+        animations.Play(name+"FireReset");
+        animations.Stop();
+        animations.Play(name+"FireReset");
         curAmmo[0] -= fireLoss;
     }
 
@@ -99,7 +103,7 @@ public partial class Weapon : Node3D
         curAmmo[0] += curGain;
         if((curAmmo[0]<maxAmmo[0]) && (curAmmo[1]>0))
         {
-            animations.Stop();
+            //animations.Stop();
             animations.Play(name+"Reload");
         }
         GD.Print($"[{curAmmo[0]},{curAmmo[1]}]");
@@ -111,7 +115,28 @@ public partial class Weapon : Node3D
             reloadGun();
             return true;
         }
-        
+        if(animationName==name+"FireReset")
+        {
+            if(type=="hitscan")
+            {
+                animations.Play(name+"Fire");
+                fireBullet();
+                return true;
+            }  
+        }
         return false;
     }
+    private void onAnimationPlayerAnimationStarted(String animationName)
+    {
+        // if(animationName==name+"Fire")
+        // {
+        //     GD.Print("BBBB");
+        //     if(type=="hitscan")
+        //     {
+        //         GD.Print("CCCC");
+        //         fireBullet();
+        //     }
+        // }
+    }
+    public virtual void fireBullet(){}
 }
