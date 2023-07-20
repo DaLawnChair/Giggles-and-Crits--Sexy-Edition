@@ -183,9 +183,11 @@ collision_layer = 2
 script = ExtResource("1_rbsx7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape3D_p1ky0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_anye1")
 
 [node name="CameraBase" type="Node3D" parent="."]
@@ -267,52 +269,53 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, -0.0499992, -1.75, 0)
 
 [node name="RayCasts" type="Node3D" parent="Camera/WeaponHolder/Shotgun"]
-transform = Transform3D(-4.37114e-08, 0, 1000, 0, 1, 0, -1, 0, -4.37114e-05, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Ray1" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+transform = Transform3D(1, 0, 0, 0, 0.907777, -0.419452, 0, 0.419452, 0.907777, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0.305882, 0.94902, 1)
 debug_shape_thickness = 1
 
 [node name="Ray2" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray3" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray4" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray5" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray6" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray7" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray8" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
 [node name="Ray9" type="RayCast3D" parent="Camera/WeaponHolder/Shotgun/RayCasts"]
-target_position = Vector3(0, 0, -50)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 collide_with_areas = true
 
@@ -325,5 +328,6 @@ libraries = {
 
 [node name="GrappleLauncher" parent="Camera" instance=ExtResource("5_kl2d8")]
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, -0.5, -0.5)
+visible = false
 
 [editable path="Camera/WeaponHolder/Shotgun"]
