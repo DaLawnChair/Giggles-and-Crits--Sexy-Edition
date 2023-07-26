@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dl4wddyg0fh8u"]
+[gd_scene load_steps=12 format=3 uid="uid://dl4wddyg0fh8u"]
 
 [ext_resource type="PackedScene" uid="uid://bf6rilc0dxbaj" path="res://GameInteractables/Player.tscn" id="1_lpq42"]
 [ext_resource type="Material" uid="uid://coi8xr6coffh2" path="res://Levels/OrangeTexture.tres" id="2_u6qdx"]
 [ext_resource type="PackedScene" uid="uid://1q6xisshgy2j" path="res://GameInteractables/HealthPack.tscn" id="3_ecaxd"]
 [ext_resource type="PackedScene" uid="uid://2qfngb5dde55" path="res://GameInteractables/AmmoPack.tscn" id="4_cbo3d"]
 [ext_resource type="PackedScene" uid="uid://cbbqhgc6y0uq7" path="res://GameInteractables/Enemy.tscn" id="5_17nq3"]
+[ext_resource type="PackedScene" uid="uid://qab6my20suwu" path="res://GameInteractables/GrappleLauncher.tscn" id="6_uoo67"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_3oh2j"]
 
@@ -56,15 +57,18 @@ material = ExtResource("2_u6qdx")
 
 [node name="HealthPack" parent="." instance=ExtResource("3_ecaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 6)
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_lpq42")]
-transform = Transform3D(-0.215264, 0, 0.976556, 0, 1, 0, -0.976556, 0, -0.215264, -8.63973, 2, 1.74552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="AmmoPack" parent="." instance=ExtResource("4_cbo3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 7)
+visible = false
 
 [node name="AmmoPack2" parent="." instance=ExtResource("4_cbo3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0486, 12.2057)
@@ -81,3 +85,11 @@ mesh = SubResource("BoxMesh_4blpq")
 
 [node name="Enemy" parent="." instance=ExtResource("5_17nq3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.72409, -7.7541)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12, 0)
+fov = 90.0
+
+[node name="GrappleLauncher" parent="." instance=ExtResource("6_uoo67")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.2177, -6.00152)

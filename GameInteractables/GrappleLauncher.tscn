@@ -4,10 +4,10 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_0f6ep"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_gmi75"]
+[sub_resource type="BoxMesh" id="BoxMesh_ovjh7"]
 
 [node name="GrappleLauncher" type="Node3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_a78hl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -17,6 +17,6 @@ mesh = SubResource("BoxMesh_0f6ep")
 [node name="GrappleBase" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 
-[node name="Rope" type="MeshInstance3D" parent="GrappleBase"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-mesh = SubResource("BoxMesh_gmi75")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GrappleBase"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("BoxMesh_ovjh7")

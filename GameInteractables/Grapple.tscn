@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://qup1x4ayeman"]
+[gd_scene load_steps=5 format=3 uid="uid://qup1x4ayeman"]
 
 [ext_resource type="Script" path="res://GameInteractables/Scripts/Grapple.cs" id="1_2do7m"]
 
@@ -6,8 +6,15 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m0qlg"]
 
+[sub_resource type="Curve3D" id="Curve3D_c1x3f"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="Grapple" type="RigidBody3D"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
@@ -29,5 +36,26 @@ collision_priority = 0.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AreaBody3D"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_610ak")
+
+[node name="Rope" type="Path3D" parent="."]
+transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, 0)
+curve = SubResource("Curve3D_c1x3f")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Rope/PathFollow3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.125, -0.125, 0)
+polygon = PackedVector2Array(0, 0, 0, 0.25, 0.25, 0.25, 0.25, 0)
+mode = 2
+path_node = NodePath("../..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
 
 [connection signal="body_entered" from="AreaBody3D" to="." method="_on_area_body_3d_body_entered"]
