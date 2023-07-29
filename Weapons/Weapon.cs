@@ -123,6 +123,12 @@ public partial class Weapon : Node3D
                 fireBullet();
                 return true;
             }  
+            else if(type=="projectile")
+            {
+                animations.Play(name+"Fire");
+                fireProjectile();
+                return true;
+            }
         }
         return false;
     }
@@ -139,4 +145,5 @@ public partial class Weapon : Node3D
         // }
     }
     public virtual void fireBullet(){}
+    public virtual void fireProjectile(){}
 }

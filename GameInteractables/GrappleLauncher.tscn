@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qab6my20suwu"]
 
-[ext_resource type="Script" path="res://GameInteractables/Scripts/GrappleLauncher.cs" id="1_a78hl"]
+[ext_resource type="Script" path="res://GameInteractables/Scripts/GrappleLauncher.cs" id="1_0wtbb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0f6ep"]
 
@@ -8,7 +8,7 @@
 
 [node name="GrappleLauncher" type="Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-script = ExtResource("1_a78hl")
+script = ExtResource("1_0wtbb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
