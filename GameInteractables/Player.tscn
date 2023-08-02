@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bf6rilc0dxbaj"]
+[gd_scene load_steps=17 format=3 uid="uid://bf6rilc0dxbaj"]
 
 [ext_resource type="Script" path="res://GameInteractables/Scripts/Player.cs" id="1_rbsx7"]
 [ext_resource type="Texture2D" uid="uid://bc6u65wk0thpe" path="res://Assets/Crosshair.png" id="2_jtyyp"]
 [ext_resource type="PackedScene" uid="uid://duawcrgqwdtqf" path="res://Models/Shotgun.blend" id="2_snlws"]
+[ext_resource type="Script" path="res://GameInteractables/Scripts/WeaponHolder.cs" id="3_lcy4a"]
 [ext_resource type="Script" path="res://Weapons/Shotgun.cs" id="4_j4d7p"]
 [ext_resource type="PackedScene" uid="uid://7cq6lagu5oc6" path="res://Weapons/RocketLauncher.tscn" id="5_bf8vl"]
 
@@ -140,6 +141,34 @@ tracks/0/keys = {
 "values": [Vector3(0.1, -0.1, -0.2), Vector3(0.13, -0.075, -0.2), Vector3(0.1, -0.1, -0.2), Vector3(0.07, -0.075, -0.2), Vector3(0.1, -0.1, -0.2)]
 }
 
+[sub_resource type="Animation" id="Animation_i0cm5"]
+resource_name = "ShotgunRaise"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/WeaponHolder/Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.1, -0.625, -0.2), Vector3(0.1, -0.125, -0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponHolder/Shotgun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0.785398), Vector3(0, -1.5708, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_cxsgc"]
 resource_name = "ShotgunReload"
 length = 0.5
@@ -176,6 +205,7 @@ _data = {
 "ShotgunFireReset": SubResource("Animation_bw800"),
 "ShotgunIdle": SubResource("Animation_wj6lh"),
 "ShotgunMove": SubResource("Animation_mwqyb"),
+"ShotgunRaise": SubResource("Animation_i0cm5"),
 "ShotgunReload": SubResource("Animation_cxsgc")
 }
 
@@ -253,11 +283,11 @@ texture = ExtResource("2_jtyyp")
 
 [node name="WeaponHolder" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.3, -0.6)
+script = ExtResource("3_lcy4a")
 
 [node name="Shotgun" parent="Camera/WeaponHolder" instance=ExtResource("2_snlws")]
 unique_name_in_owner = true
-transform = Transform3D(-7.23994e-08, 0, -0.0199999, 0, 0.02, 0, 0.0199999, 0, -7.23994e-08, 0.1, -0.125, -0.2)
-visible = false
+transform = Transform3D(-3.61999e-07, 0, -0.1, 0, 0.1, 0, 0.1, 0, -3.61999e-07, 0.1, -0.125, -0.2)
 script = ExtResource("4_j4d7p")
 
 [node name="Light" parent="Camera/WeaponHolder/Shotgun" index="0"]
@@ -328,5 +358,6 @@ libraries = {
 }
 
 [node name="RocketLauncher" parent="Camera/WeaponHolder" instance=ExtResource("5_bf8vl")]
+visible = false
 
 [editable path="Camera/WeaponHolder/Shotgun"]
