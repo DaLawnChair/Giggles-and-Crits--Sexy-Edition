@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public partial class WeaponHolder : Node3D
 {
-	List<Weapon> weaponList = new List<Weapon>();
-	int currWeaponIndex=0;
+	public List<Weapon> weaponList = new List<Weapon>();
+	public int currWeaponIndex=0;
 	int prevWeaponIndex=1;
 
 
@@ -20,7 +20,6 @@ public partial class WeaponHolder : Node3D
 				weaponList.Add( (Weapon) node);
 			}
 		}
-		GD.Print(weaponList.ToString());
 		weaponList[0].enabled = true;
 	}
 
@@ -57,6 +56,14 @@ public partial class WeaponHolder : Node3D
 			currWeaponIndex = selectedGun;
 		}
 		weaponList[currWeaponIndex].weaponSelect();
+	}
+	public void addAmmo(float value)
+	{
+		foreach(Weapon weapon in weaponList)
+		{
+			weapon.curAmmo[1] = Math.Min(weapon.maxAmmo[1], weapon.curAmmo[1] + (int) (value*weapon.maxAmmo[1]));
+			GD.Print(weapon.curAmmo[1]);
+		}
 	}
 
 }

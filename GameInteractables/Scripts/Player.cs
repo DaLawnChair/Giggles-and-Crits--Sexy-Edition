@@ -13,8 +13,8 @@ public partial class Player : CharacterBody3D
 	public const float Gravity = -4.9f;
 	public const float MaxFallSpeed = -20f;
 	public Node3D cameraBase;
+	public WeaponHolder weaponHolder;
 	public Camera3D camera;
-	public Weapon currentWeapon;
 
 	public int health=100;
 
@@ -24,7 +24,7 @@ public partial class Player : CharacterBody3D
 	{
 		cameraBase = GetNode<Node3D>("CameraBase");	
 		camera = GetNode<Camera3D>("Camera");
-		currentWeapon = GetNode<Weapon>("%Shotgun");
+		weaponHolder = GetNode<WeaponHolder>("Camera/WeaponHolder");
 		Input.MouseMode = Input.MouseModeEnum.Captured; // Keeps the mouse inside of the window
 
 	} 
@@ -98,7 +98,8 @@ public partial class Player : CharacterBody3D
 
 	public void updateGunPlayerAnimationVars()
 	{
-		currentWeapon.playerVelocity = Velocity;
-		currentWeapon.playerGrounded = grounded;
+		//Give access to the current weapon the velocity and groundness of the player.
+		weaponHolder.weaponList[weaponHolder.currWeaponIndex].playerVelocity = Velocity;
+		weaponHolder.weaponList[weaponHolder.currWeaponIndex].playerGrounded = grounded;
 	}
 }

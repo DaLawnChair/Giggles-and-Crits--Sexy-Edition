@@ -57,18 +57,15 @@ material = ExtResource("2_u6qdx")
 
 [node name="HealthPack" parent="." instance=ExtResource("3_ecaxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 6)
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_lpq42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="AmmoPack" parent="." instance=ExtResource("4_cbo3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 7)
-visible = false
 
 [node name="AmmoPack2" parent="." instance=ExtResource("4_cbo3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
-visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0486, 12.2057)
