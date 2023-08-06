@@ -7,6 +7,7 @@ public partial class WeaponHolder : Node3D
 	public List<Weapon> weaponList = new List<Weapon>();
 	public int currWeaponIndex=0;
 	int prevWeaponIndex=1;
+	public Weapon currWeapon;
 
 
 
@@ -20,7 +21,8 @@ public partial class WeaponHolder : Node3D
 				weaponList.Add( (Weapon) node);
 			}
 		}
-		weaponList[0].enabled = true;
+		currWeapon = weaponList[0];
+		currWeapon.enabled = true;
 	}
 
     public override void _Input(InputEvent @event)
@@ -54,16 +56,24 @@ public partial class WeaponHolder : Node3D
 			weaponList[currWeaponIndex].weaponDeselect();
 			prevWeaponIndex = currWeaponIndex;
 			currWeaponIndex = selectedGun;
+			currWeapon = weaponList[currWeaponIndex];
 		}
 		weaponList[currWeaponIndex].weaponSelect();
 	}
-	public void addAmmo(float value)
+	public Boolean addAmmo(float value)
 	{
+		Boolean addedAmmo=false;
 		foreach(Weapon weapon in weaponList)
 		{
+			if(weapon.curAmmo[1]!=weapon.maxAmmo[1])
+			{
+				addedAmmo = true;
+			}
 			weapon.curAmmo[1] = Math.Min(weapon.maxAmmo[1], weapon.curAmmo[1] + (int) (value*weapon.maxAmmo[1]));
 			GD.Print(weapon.curAmmo[1]);
 		}
+		GD.Print(addedAmmo);
+		return addedAmmo;
 	}
 
 }

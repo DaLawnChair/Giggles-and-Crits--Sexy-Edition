@@ -82,7 +82,6 @@ mesh = SubResource("BoxMesh_4blpq")
 
 [node name="Enemy" parent="." instance=ExtResource("5_17nq3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.72409, -7.7541)
-visible = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12, 0)

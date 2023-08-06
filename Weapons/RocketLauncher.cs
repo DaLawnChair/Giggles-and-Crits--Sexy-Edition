@@ -17,6 +17,7 @@ public partial class RocketLauncher : Weapon
     public override void fireProjectile()
     {
 		rocket = (Rocket) rocketScene.Instantiate();
+		rocket.damage = damage;
         rocketBase.AddChild(rocket);
 		rocket.flying = true;
     }

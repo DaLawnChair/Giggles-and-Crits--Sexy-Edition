@@ -16,7 +16,10 @@ public partial class Player : CharacterBody3D
 	public WeaponHolder weaponHolder;
 	public Camera3D camera;
 
-	public int health=100;
+	HUD hud;
+
+	public int currHealth=40;
+	public int maxHealth=100;
 
 	float y_velocity=0;
 	Boolean grounded;
@@ -25,6 +28,7 @@ public partial class Player : CharacterBody3D
 		cameraBase = GetNode<Node3D>("CameraBase");	
 		camera = GetNode<Camera3D>("Camera");
 		weaponHolder = GetNode<WeaponHolder>("Camera/WeaponHolder");
+		hud = GetNode<HUD>("Camera/HUD");
 		Input.MouseMode = Input.MouseModeEnum.Captured; // Keeps the mouse inside of the window
 
 	} 
@@ -101,5 +105,11 @@ public partial class Player : CharacterBody3D
 		//Give access to the current weapon the velocity and groundness of the player.
 		weaponHolder.weaponList[weaponHolder.currWeaponIndex].playerVelocity = Velocity;
 		weaponHolder.weaponList[weaponHolder.currWeaponIndex].playerGrounded = grounded;
+	}
+
+	public void takeDamage(int damage)
+	{
+		currHealth -= damage;
+		//GD.Print(curHealth);
 	}
 }

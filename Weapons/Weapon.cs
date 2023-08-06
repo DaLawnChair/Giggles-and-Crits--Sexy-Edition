@@ -44,6 +44,7 @@ public partial class Weapon : Node3D
         if(enabled)
         {
             gunAnimationPlayer();
+            //GD.Print($"{name}, [{curAmmo[0]},{curAmmo[1]}]");
         }
 	}
 	public void gunAnimationPlayer()
@@ -88,7 +89,6 @@ public partial class Weapon : Node3D
         animations.Play(name+"FireReset");
         animations.Stop();
         animations.Play(name+"FireReset");
-        curAmmo[0] -= fireLoss;
     }
 
     public void startReload()
@@ -108,7 +108,7 @@ public partial class Weapon : Node3D
         {
             animations.Play(name+"Reload");
         }
-        GD.Print($"[{curAmmo[0]},{curAmmo[1]}]");
+        //GD.Print($"[{curAmmo[0]},{curAmmo[1]}]");
     }
     private void onAnimationPlayerAnimationFinished(String animationName)
     {
@@ -118,6 +118,7 @@ public partial class Weapon : Node3D
         }
         if(animationName==name+"FireReset")
         {
+            curAmmo[0] -= fireLoss;
             if(type=="hitscan")
             {
                 animations.Play(name+"Fire");
@@ -140,11 +141,13 @@ public partial class Weapon : Node3D
 
     public void weaponSelect()
     {
+        animations.Stop();
         Visible = true;
         animations.Play(name+"Raise");
     }
     public void weaponDeselect()
     {
+        animations.Stop();
         enabled = false;
         Visible = false;
     }

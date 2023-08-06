@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf6rilc0dxbaj"]
+[gd_scene load_steps=19 format=3 uid="uid://bf6rilc0dxbaj"]
 
 [ext_resource type="Script" path="res://GameInteractables/Scripts/Player.cs" id="1_rbsx7"]
+[ext_resource type="Script" path="res://GameInteractables/Scripts/HUD.cs" id="2_dtfit"]
 [ext_resource type="Texture2D" uid="uid://bc6u65wk0thpe" path="res://Assets/Crosshair.png" id="2_jtyyp"]
 [ext_resource type="PackedScene" uid="uid://duawcrgqwdtqf" path="res://Models/Shotgun.blend" id="2_snlws"]
+[ext_resource type="FontFile" uid="uid://o4duyucfdkxw" path="res://Assets/MRKMaston-Bold.ttf" id="3_5lgvn"]
 [ext_resource type="Script" path="res://GameInteractables/Scripts/WeaponHolder.cs" id="3_lcy4a"]
 [ext_resource type="Script" path="res://Weapons/Shotgun.cs" id="4_j4d7p"]
 [ext_resource type="PackedScene" uid="uid://7cq6lagu5oc6" path="res://Weapons/RocketLauncher.tscn" id="5_bf8vl"]
@@ -211,6 +213,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_rbsx7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -226,6 +229,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
 fov = 90.0
 
 [node name="HUD" type="CanvasLayer" parent="Camera"]
+script = ExtResource("2_dtfit")
 
 [node name="Control" type="Control" parent="Camera/HUD"]
 layout_mode = 3
@@ -243,37 +247,55 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 200.0
-offset_top = 1000.0
-offset_right = -1100.0
-offset_bottom = -650.0
+offset_left = 110.0
+offset_top = 480.0
+offset_right = -841.0
+offset_bottom = -89.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.686275, 0.117647, 0.0588235, 1)
+theme_override_constants/outline_size = 25
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_5lgvn")
+theme_override_font_sizes/font_size = 75
 text = "100 HP
 "
+
+[node name="HealthFlicker" type="Timer" parent="Camera/HUD/Control/Health"]
+wait_time = 0.05
+one_shot = true
 
 [node name="CurAmmo" type="Label" parent="Camera/HUD/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1000.0
-offset_top = 500.0
-offset_right = -1100.0
-offset_bottom = -650.0
-text = "10
+offset_left = 939.0
+offset_top = 478.0
+offset_right = -178.0
+offset_bottom = -103.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_5lgvn")
+theme_override_font_sizes/font_size = 65
+text = "0
 "
+justification_flags = 171
+text_direction = 2
 
 [node name="ResAmmo" type="Label" parent="Camera/HUD/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1010.0
-offset_top = 525.0
-offset_right = -1100.0
-offset_bottom = -650.0
-text = "10
+offset_left = 983.0
+offset_top = 493.0
+offset_right = -145.0
+offset_bottom = -108.0
+theme_override_colors/font_color = Color(0.901961, 0.196078, 0.392157, 1)
+theme_override_fonts/font = ExtResource("3_5lgvn")
+theme_override_font_sizes/font_size = 45
+text = "0
 "
 
 [node name="Crosshair" type="Sprite2D" parent="Camera/HUD/Control"]

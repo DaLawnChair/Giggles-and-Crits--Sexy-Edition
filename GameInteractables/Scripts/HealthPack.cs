@@ -15,10 +15,19 @@ public partial class HealthPack : Pickupable
 		value = resourceTypes[type];
     }
 
-		public override void _on_player_body_entered(Player player)
+	Boolean IsFull(int curr, int max)
+	{
+		return curr==max;
+	}
+	public override void _on_player_body_entered(Player player)
     {
-		base._on_player_body_entered(player);
-		player.health += 100;
-		GD.Print(player.health);
+		if(player.currHealth!=player.maxHealth)
+		{
+			isFull = false;
+			player.currHealth = Math.Min(player.maxHealth, player.currHealth + (int) (value*player.maxHealth));
+			base._on_player_body_entered(player);
+			GD.Print(player.currHealth);
+		}
+		
     }
 }

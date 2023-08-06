@@ -10,6 +10,8 @@ public partial class Pickupable : StaticBody3D
     protected readonly Dictionary<String, float> resourceTypes = new Dictionary<String, float>(){{"Small", 0.25f}, {"Medium", 0.5f}, {"Large", 1.0f}};
     float respawnTime = 2f;
 
+    protected Boolean isFull = false;
+
 
     public override void _Ready()
     {
@@ -19,11 +21,15 @@ public partial class Pickupable : StaticBody3D
         spawnTimer.WaitTime = respawnTime;
     }
 
+
     public virtual void _on_player_body_entered(Player player)
     {
-        collision.SetDeferred("monitoring",false);
-        mesh.Visible = false;
-        spawnTimer.Start();
+        if(!isFull)
+        {
+            collision.SetDeferred("monitoring",false);
+            mesh.Visible = false;
+            spawnTimer.Start();
+        }
     }
 
     public void _on_timer_timeout()

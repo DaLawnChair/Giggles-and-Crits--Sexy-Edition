@@ -17,7 +17,9 @@ public partial class AmmoPack : Pickupable
 
 	public override void _on_player_body_entered(Player player)
     {
-		base._on_player_body_entered(player);
-		player.weaponHolder.addAmmo(value);
+		if(player.weaponHolder.addAmmo(value))
+		{
+			base._on_player_body_entered(player);
+		}
     }
 }
