@@ -108,7 +108,6 @@ public partial class Weapon : Node3D
         {
             animations.Play(name+"Reload");
         }
-        //GD.Print($"[{curAmmo[0]},{curAmmo[1]}]");
     }
     private void onAnimationPlayerAnimationFinished(String animationName)
     {

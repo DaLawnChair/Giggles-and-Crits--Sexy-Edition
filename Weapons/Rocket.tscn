@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://den4trhbjwhtm"]
+[gd_scene load_steps=7 format=3 uid="uid://den4trhbjwhtm"]
 
 [ext_resource type="Script" path="res://Weapons/Rocket.cs" id="1_bm5u5"]
 
@@ -6,7 +6,9 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_x0vjf"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gud7x"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ihupa"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5ei2s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2nyeu"]
 
@@ -27,14 +29,19 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_x0vjf")
 
 [node name="HitDetection" type="Area3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.5, 0)
 collision_layer = 0
 collision_mask = 3
 collision_priority = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitDetection"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_gud7x")
+shape = SubResource("SphereShape3D_ihupa")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="HitDetection"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_5ei2s")
+skeleton = NodePath("../..")
 
 [node name="DamageArea" type="Area3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

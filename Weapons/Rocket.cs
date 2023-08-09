@@ -12,7 +12,7 @@ public partial class Rocket : RigidBody3D
 	{
 		TopLevel = true;
 		damageArea = GetNode<Area3D>("DamageArea");
-		damageArea.Monitoring = false; //Doesn't exlode when it doesn't need to
+		damageArea.Monitoring = false; //Doesn't explode at start
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,37 +26,23 @@ public partial class Rocket : RigidBody3D
 		{
 			Sleeping = true;
 		}
-		GD.Print(LinearVelocity);
-
-		if(Mathf.IsEqualApprox(LinearVelocity.LengthSquared(),0))
-		{
-			explode();
-		}
-
 	}
 
-	void OnHitDetectionBodyEntered(Node3D body){}
-	// {
-	// 	explode();
-	// 	GD.Print("stopped");
-	// }
+	void OnHitDetectionBodyEntered(Node3D body)
+	{
+		explode();
+	}
 
 	void explode()
 	{
 		flying = false;
-
 		damageArea.Monitoring = true;
-		GD.Print("monitoring on");
-		//CallDeferred("QueueFree");
 	}
 	void OnDamageAreaBodyEntered(Node3D body)
 	{
-
-		if(body.IsClass("Enemy"))
+		if(body.HasMethod("takeDamage"))
 		{
-			((Enemy)(body)).takeDamage(damage);
-			GD.Print("tookdamage");
-		}
-		
+			((MobEntity)body).takeDamage(damage);
+		}	
 	}
 }

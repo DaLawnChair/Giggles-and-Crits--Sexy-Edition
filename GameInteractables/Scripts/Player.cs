@@ -1,30 +1,18 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody3D
+public partial class Player : MobEntity
 {
-	public const float JumpForce = 100f;
-	public const float Sensitivity = 0.01f;
-	
 
-	public const float MoveSpeedGround = 20.0f;
-	public const float MoveSpeedAir = 18.0f;
-	
-	public const float Gravity = -4.9f;
-	public const float MaxFallSpeed = -20f;
 	public Node3D cameraBase;
 	public WeaponHolder weaponHolder;
 	public Camera3D camera;
 
 	HUD hud;
 
-	public int currHealth=40;
-	public int maxHealth=100;
-
-	float y_velocity=0;
-	Boolean grounded;
 	public override void _Ready()
 	{
+		currHealth = 40;
 		cameraBase = GetNode<Node3D>("CameraBase");	
 		camera = GetNode<Camera3D>("Camera");
 		weaponHolder = GetNode<WeaponHolder>("Camera/WeaponHolder");
@@ -53,8 +41,7 @@ public partial class Player : CharacterBody3D
 		}
 
 	}
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle(); // 9.8 by default
+
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -105,11 +92,5 @@ public partial class Player : CharacterBody3D
 		//Give access to the current weapon the velocity and groundness of the player.
 		weaponHolder.weaponList[weaponHolder.currWeaponIndex].playerVelocity = Velocity;
 		weaponHolder.weaponList[weaponHolder.currWeaponIndex].playerGrounded = grounded;
-	}
-
-	public void takeDamage(int damage)
-	{
-		currHealth -= damage;
-		//GD.Print(curHealth);
 	}
 }
