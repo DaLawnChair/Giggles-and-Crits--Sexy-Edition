@@ -83,12 +83,18 @@ public partial class Weapon : Node3D
         {
             return;
         }
+        animations.Stop();
+        animations.Play(name+"Fire");
 
-        //Jank that teleports the shotgun to the "RESET" animation, skipping blendtime and thus only finishing when in position
-        animations.Stop();
-        animations.Play(name+"FireReset");
-        animations.Stop();
-        animations.Play(name+"FireReset");
+        if(type=="hitscan")
+        {
+            fireBullet();
+        }
+        else
+        {
+            fireProjectile();
+        }
+        curAmmo[0] -= fireLoss;
     }
 
     public void startReload()
@@ -114,20 +120,6 @@ public partial class Weapon : Node3D
         if(animationName==name+"Reload")
         {
             reloadGun();
-        }
-        if(animationName==name+"FireReset")
-        {
-            curAmmo[0] -= fireLoss;
-            if(type=="hitscan")
-            {
-                animations.Play(name+"Fire");
-                fireBullet();
-            }  
-            else if(type=="projectile")
-            {
-                animations.Play(name+"Fire");
-                fireProjectile();
-            }
         }
         if(animationName==name+"Raise")
         {
