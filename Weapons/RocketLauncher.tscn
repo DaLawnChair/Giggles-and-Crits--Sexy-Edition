@@ -85,7 +85,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dawb5"]
 resource_name = "RocketLauncherMove"
-step = 0.001
+length = 0.8
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,7 +94,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.195, 0.297, 0.449, 0.598),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.1, 0.1, 0), Vector3(0, 0, 0), Vector3(-0.1, 0.1, 0), Vector3(0, 0, 0)]

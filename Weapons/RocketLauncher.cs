@@ -21,6 +21,4 @@ public partial class RocketLauncher : Weapon
         rocketBase.AddChild(rocket);
 		rocket.flying = true;
     }
-
-	
 }

@@ -3,10 +3,9 @@ using System;
 
 public partial class Grapple : RigidBody3D
 {
-	const float Speed = 20f;
+	public const float Speed = 20f;
 	public Boolean flying = false;
 	Node3D grappleBase;
-	public Vector3 hookPoint;
 	Curve3D rope;
 	GrappleLauncher grappleLauncher;
 
@@ -33,15 +32,14 @@ public partial class Grapple : RigidBody3D
 			Sleeping=true;
 
 		}
-		hookPoint = Position;
 	}
 
 	public void drawRope()
 	{
 		rope.SetPointPosition(1,grappleBase.Position);
 		rope.SetPointPosition(0,Position);
-		GD.Print(rope.GetPointPosition(0));
-		GD.Print(rope.GetPointPosition(0)-grappleBase.Position);
+		// GD.Print(rope.GetPointPosition(0));
+		// GD.Print(rope.GetPointPosition(0)-grappleBase.Position);
 	}
 	public void _on_area_body_3d_body_entered(Node3D body)
 	{

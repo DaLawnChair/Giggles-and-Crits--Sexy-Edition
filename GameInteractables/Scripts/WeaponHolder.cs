@@ -43,6 +43,10 @@ public partial class WeaponHolder : Node3D
 		{
 			enableGun(3);
 		}
+		else if(Input.IsActionJustPressed("weaponSwitch"))
+		{
+			enableGun(prevWeaponIndex);
+		}
     }
 
 	void enableGun(int selectedGun=0)

@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://qab6my20suwu"]
+[gd_scene load_steps=5 format=3 uid="uid://qab6my20suwu"]
 
 [ext_resource type="Script" path="res://GameInteractables/Scripts/GrappleLauncher.cs" id="1_0wtbb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0f6ep"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ovjh7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hirua"]
 
 [node name="GrappleLauncher" type="Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -20,3 +22,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GrappleBase"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("BoxMesh_ovjh7")
+
+[node name="Rope" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 2)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rope"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_hirua")
